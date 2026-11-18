@@ -1,0 +1,6 @@
+Django
+djangorestframework
+djangorestframework-simplejwt
+mssql-django
+pymongo
+python-dotenv
