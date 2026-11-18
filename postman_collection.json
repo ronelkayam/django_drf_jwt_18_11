@@ -1,0 +1,57 @@
+{
+  "info": {
+    "name": "Django DRF + JWT + Dual-DB Demo",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Register User (SQL Server)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"student1\",\n  \"email\": \"student1@example.com\",\n  \"password\": \"Password123\"\n}"
+        },
+        "url": "http://127.0.0.1:8000/api/register/"
+      }
+    },
+    {
+      "name": "2. Login & Get JWT Token",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"student1\",\n  \"password\": \"Password123\"\n}"
+        },
+        "url": "http://127.0.0.1:8000/api/login/"
+      }
+    },
+    {
+      "name": "3. Create Workout (SQL + Signal to Mongo)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{ACCESS_TOKEN}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"exercise_name\": \"Bench Press\",\n  \"weight_kg\": 85,\n  \"reps\": 8\n}"
+        },
+        "url": "http://127.0.0.1:8000/api/workouts/"
+      }
+    },
+    {
+      "name": "4. Get Audit Logs (MongoDB)",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{ACCESS_TOKEN}}" }
+        ],
+        "url": "http://127.0.0.1:8000/api/logs/"
+      }
+    }
+  ]
+}
